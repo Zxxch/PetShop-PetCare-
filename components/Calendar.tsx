@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from './Icons';
 
@@ -49,8 +50,8 @@ const Calendar: React.FC<CalendarProps> = ({ selectedDate, onDateChange }) => {
       const isToday = isSameDay(date, today);
       const isPast = date < today;
 
-      const baseClasses = 'text-center p-2 rounded-full cursor-pointer transition-colors w-9 h-9 flex items-center justify-center';
-      const selectedClasses = 'bg-brand-DEFAULT text-white font-bold';
+      const baseClasses = 'text-center p-2 rounded-full cursor-pointer transition-all duration-200 ease-out w-9 h-9 flex items-center justify-center';
+      const selectedClasses = 'bg-green-400 text-black font-bold scale-110 shadow-md';
       const todayClasses = 'border border-brand-dark';
       const pastClasses = 'text-gray-400 cursor-not-allowed';
       const defaultClasses = 'hover:bg-brand-light';
