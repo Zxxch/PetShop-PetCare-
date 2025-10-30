@@ -97,7 +97,7 @@ const DashboardPage: React.FC = () => {
          <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           {pets.slice(0, 6).map(pet => (
             <div key={pet.id} className="text-center">
-              <img src={pet.photoUrl} alt={pet.name} className="w-24 h-24 rounded-full mx-auto object-cover shadow-md border-2 border-white"/>
+              <img src={pet.photoUrl} alt={pet.name} className="w-24 h-24 rounded-full mx-auto object-cover shadow-md border-2 border-white transition-transform duration-300 hover:scale-110"/>
               <p className="mt-2 text-sm font-medium">{pet.name}</p>
             </div>
           ))}
