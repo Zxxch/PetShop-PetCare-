@@ -42,7 +42,7 @@ const ConfirmationPage: React.FC = () => {
         setTimeout(() => {
           new Notification('Recordatorio de Cita - PetCare+', {
             body: `Tu turno para ${petName} en ${branchName} es en una hora. ¡Te esperamos!`,
-            icon: '/favicon.svg', // Assumes favicon is available at the root
+            icon: '/favicon-32x32.png',
           });
         }, delay);
         setReminderSet(true);
