@@ -1,0 +1,5 @@
+{
+  "name": "Sistema de Reservas PetCare+",
+  "description": "Una aplicación web para un servicio de suscripción y reserva de peluquería para mascotas llamado PetCare+. Los usuarios pueden gestionar sus mascotas, suscribirse a planes mensuales y reservar citas.",
+  "requestFramePermissions": []
+}

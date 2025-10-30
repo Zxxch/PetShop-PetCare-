@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetCare+</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="importmap">
+    {
+      "imports": {
+        "react": "https://aistudiocdn.com/react@^19.2.0",
+        "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+        "react/": "https://aistudiocdn.com/react@^19.2.0/",
+        "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.5",
+        "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24"
+      }
+    }
+    </script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#b2dfdb',
+                            DEFAULT: '#009688',
+                            dark: '#00796b',
+                        },
+                        accent: {
+                            light: '#FFECB3',
+                            DEFAULT: '#FFC107',
+                            dark: '#FFA000',
+                        },
+                        'warm-beige': '#fdfaf6',
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        body {
+            background-color: #FFDDC1; /* Stronger Light Salmon/Orange */
+            min-height: 100vh;
+        }
+    </style>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="antialiased">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
