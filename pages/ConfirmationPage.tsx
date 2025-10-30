@@ -94,7 +94,7 @@ const ConfirmationPage: React.FC = () => {
             </p>
             <button
                 onClick={handleRequestNotificationPermission}
-                className="mt-3 w-full sm:w-auto rounded-md border border-transparent bg-accent-DEFAULT px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-accent-dark focus:ring-offset-2"
+                className="mt-3 w-full sm:w-auto rounded-md border border-transparent bg-accent-DEFAULT px-4 py-2 text-sm font-medium text-black shadow-sm hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-accent-dark focus:ring-offset-2"
             >
                 Activar Recordatorios
             </button>
@@ -150,7 +150,7 @@ const ConfirmationPage: React.FC = () => {
         <div className="mt-8">
           <Link
             to="/dashboard"
-            className="inline-block w-full rounded-md border border-transparent bg-brand-DEFAULT py-3 px-4 text-center font-medium text-white hover:bg-brand-dark"
+            className="inline-block w-full rounded-md border border-transparent bg-brand-DEFAULT py-3 px-4 text-center font-medium text-black hover:bg-brand-dark"
           >
             Volver al Inicio
           </Link>

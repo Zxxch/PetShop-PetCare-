@@ -187,7 +187,7 @@ const BookingPage: React.FC = () => {
               <button
                 onClick={handleBooking}
                 disabled={!selectedPetId || !selectedTime || !selectedBranchId}
-                className="w-full bg-brand-DEFAULT text-white font-bold py-3 px-4 rounded-lg hover:bg-brand-dark transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-accent-DEFAULT text-black font-bold py-3 px-4 rounded-lg hover:bg-accent-dark transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <CalendarIcon className="h-5 w-5" />
                 Confirmar y Pagar
