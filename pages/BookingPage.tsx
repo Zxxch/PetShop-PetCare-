@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { usePets } from '../contexts/PetContext';
+import { useBookings } from '../contexts/BookingContext';
 import { Plan, Branch } from '../types';
 import Calendar from '../components/Calendar';
 import Stepper from '../components/Stepper';
@@ -27,6 +28,7 @@ const BookingPage: React.FC = () => {
   const { planId } = useParams<{ planId: string }>();
   const navigate = useNavigate();
   const { pets } = usePets();
+  const { addBooking } = useBookings();
 
   const [selectedPetId, setSelectedPetId] = useState<string | null>(pets.length > 0 ? pets[0].id : null);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -47,20 +49,26 @@ const BookingPage: React.FC = () => {
   }, [selectedPetId, selectedTime, selectedBranchId]);
 
   const handleBooking = () => {
+    const selectedPet = pets.find(p => p.id === selectedPetId);
     const selectedBranch = MOCK_BRANCHES.find(b => b.id === selectedBranchId);
-    if (!selectedPetId || !selectedDate || !selectedTime || !plan || !selectedBranch) {
+    if (!selectedPet || !selectedDate || !selectedTime || !plan || !selectedBranch) {
       alert('Por favor, completa todos los campos para la reserva.');
       return;
     }
-    navigate('/confirmation', {
-      state: {
-        petName: pets.find(p => p.id === selectedPetId)?.name,
+
+    const bookingData = {
+        petName: selectedPet.name,
         planName: plan.name,
         date: selectedDate.toLocaleDateString('es-ES', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' }),
         time: selectedTime,
         branchName: selectedBranch.name,
         appointmentTimestamp: selectedDate.toISOString(),
-      },
+    };
+    
+    const newBooking = addBooking(bookingData);
+
+    navigate('/confirmation', {
+      state: { ...bookingData, bookingId: newBooking.id },
     });
   };
 

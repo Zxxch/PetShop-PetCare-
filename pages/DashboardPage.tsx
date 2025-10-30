@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
 import { usePets } from '../contexts/PetContext';
+import { useBookings } from '../contexts/BookingContext';
 import { Plan } from '../types';
-import PetCard from '../components/PetCard';
 import PlanCard from '../components/PlanCard';
+import { CalendarIcon, TrashIcon } from '../components/Icons';
 
 // Mock Data
 const MOCK_PLANS: Plan[] = [
@@ -40,6 +41,13 @@ const itemVariants = {
 const DashboardPage: React.FC = () => {
   const { user } = useAuth();
   const { pets } = usePets();
+  const { bookings, cancelBooking } = useBookings();
+
+  const handleCancelBooking = (bookingId: string) => {
+      if (window.confirm('¿Estás seguro de que quieres cancelar este turno?')) {
+          cancelBooking(bookingId);
+      }
+  };
 
   return (
     <div className="container mx-auto max-w-7xl">
@@ -48,8 +56,38 @@ const DashboardPage: React.FC = () => {
       </h1>
       <p className="mt-2 text-lg text-gray-600">Gestiona tus mascotas y suscripciones.</p>
 
-      {/* My Pets Summary Section */}
+      {/* Upcoming Appointments Section */}
       <div className="mt-10">
+        <h2 className="text-2xl font-bold text-gray-900">Próximos Turnos</h2>
+        {bookings.length > 0 ? (
+            <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {bookings.map(booking => (
+                    <div key={booking.id} className="bg-[#FFF3E0] p-4 rounded-lg shadow-xl border border-orange-300 flex flex-col justify-between">
+                        <div>
+                            <p className="font-bold text-lg text-brand-dark">{booking.planName} para {booking.petName}</p>
+                            <p className="text-sm text-gray-600 mt-1">{booking.branchName}</p>
+                            <p className="text-sm text-gray-800 font-medium mt-2">{booking.date} a las {booking.time}</p>
+                        </div>
+                        <button 
+                            onClick={() => handleCancelBooking(booking.id)}
+                            className="mt-4 w-full flex items-center justify-center gap-2 text-sm text-red-600 bg-red-100 hover:bg-red-200 transition-colors py-2 px-3 rounded-md"
+                        >
+                            <TrashIcon className="h-4 w-4" />
+                            Cancelar Turno
+                        </button>
+                    </div>
+                ))}
+            </div>
+        ) : (
+            <div className="mt-4 text-center py-8 bg-[#FFF3E0] rounded-lg shadow-xl border border-orange-300">
+                <CalendarIcon className="h-12 w-12 mx-auto text-gray-400"/>
+                <p className="mt-2 text-gray-600">No tienes turnos pendientes.</p>
+            </div>
+        )}
+      </div>
+
+      {/* My Pets Summary Section */}
+      <div className="mt-12">
         <div className="flex items-center justify-between">
             <h2 className="text-2xl font-bold text-gray-900">Mis Mascotas ({pets.length})</h2>
             <Link to="/profile" className="rounded-lg bg-[#FFF3E0] border border-orange-200 px-4 py-2 text-gray-700 hover:bg-[#FBEAD5] transition-colors">

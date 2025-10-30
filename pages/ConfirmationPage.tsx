@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useBookings } from '../contexts/BookingContext';
 
 const ConfirmationPage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { state } = location;
+  const { cancelBooking } = useBookings();
 
   const [notificationStatus, setNotificationStatus] = useState<'default' | 'granted' | 'denied' | 'unsupported'>('default');
   const [reminderSet, setReminderSet] = useState(false);
@@ -62,6 +64,13 @@ const ConfirmationPage: React.FC = () => {
       scheduleReminder();
     }
   }, [state, navigate, reminderSet]);
+
+  const handleCancel = () => {
+    if (state?.bookingId && window.confirm('¿Estás seguro de que quieres cancelar esta reserva?')) {
+        cancelBooking(state.bookingId);
+        navigate('/dashboard');
+    }
+  };
   
   const handleRequestNotificationPermission = async () => {
     if (!('Notification' in window)) return;
@@ -147,13 +156,19 @@ const ConfirmationPage: React.FC = () => {
           {renderNotificationUI()}
         </div>
 
-        <div className="mt-8">
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3">
           <Link
             to="/dashboard"
             className="inline-block w-full rounded-md border border-transparent bg-brand-DEFAULT py-3 px-4 text-center font-medium text-black hover:bg-brand-dark"
           >
             Volver al Inicio
           </Link>
+          <button
+            onClick={handleCancel}
+            className="inline-block w-full rounded-md border border-gray-300 bg-white py-3 px-4 text-center font-medium text-red-600 hover:bg-gray-50"
+          >
+            Cancelar Reserva
+          </button>
         </div>
       </div>
     </div>

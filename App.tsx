@@ -2,6 +2,7 @@ import React from 'react';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { PetProvider } from './contexts/PetContext';
+import { BookingProvider } from './contexts/BookingContext';
 import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
 import BookingPage from './pages/BookingPage';
@@ -71,9 +72,11 @@ const App: React.FC = () => {
   return (
     <AuthProvider>
       <PetProvider>
-        <HashRouter>
-          <AppContent />
-        </HashRouter>
+        <BookingProvider>
+            <HashRouter>
+            <AppContent />
+            </HashRouter>
+        </BookingProvider>
       </PetProvider>
     </AuthProvider>
   );

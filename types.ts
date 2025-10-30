@@ -27,3 +27,13 @@ export interface Branch {
   name: string;
   address: string;
 }
+
+export interface Booking {
+  id: string;
+  petName: string;
+  planName: string;
+  date: string;
+  time: string;
+  branchName: string;
+  appointmentTimestamp: string;
+}
